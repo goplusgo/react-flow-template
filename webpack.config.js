@@ -1,6 +1,6 @@
-var webpack = require("webpack");
-
 const path = require("path");
+const webpack = require('webpack');
+const ESLintPlugin = require("eslint-webpack-plugin");
 const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
@@ -34,6 +34,10 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new ESLintPlugin({
+      extensions: ["js", "jsx"],
+      exclude: ["/node_modules/"],
+    }),
     new WebpackManifestPlugin({ publicPath: "/public/" }),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
