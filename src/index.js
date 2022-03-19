@@ -1,7 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+// @flow
+
+import "./index.css";
+
 import App from "./App";
+import React from "react";
+import ReactDOM from "react-dom";
 
 ReactDOM.render(
   <React.StrictMode>

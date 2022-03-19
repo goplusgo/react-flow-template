@@ -2,6 +2,7 @@
 [Project Setup](#project_setup)
   * [Set up Webpack](#setup_webpack)
   * [Setup Babel](#setup_babel)
+  * [Setup Flow](#setup_flow)
 
 ### Project Setup <a name="project_setup" />
 #### Set up Webpack <a name="setup_webpack" />
@@ -114,7 +115,7 @@ yarn add -D @babel/cli @babel/core @babel/preset-env @babel/preset-react
 
 **Config Babel**
 Create `babel.config.json` with the following content:
-```
+```json
 {
   "presets": ["@babel/preset-env", "@babel/preset-react"],
   "targets": {
@@ -127,4 +128,58 @@ After we setup Webpack and Babel, now we're able to start the project by running
 
 ```
 yarn dev
+```
+
+
+#### Setup Flow <a name="setup_flow" />
+**Install Flow and plugins**
+```
+yarn add -D flow-bin @babel/preset-flow babel-plugin-transform-flow-enums
+```
+Install flow enums runtime:
+```
+yarn add flow-enums-runtime
+```
+
+**Config Flow**
+Run:
+```
+yarn init flow
+```
+to generate a `.flowconfig` file locally. Update it with the following contents:
+
+```yaml
+[ignore]
+<PROJECT_ROOT>/.history/.*
+<PROJECT_ROOT>/node_modules/resolve/test/resolver/malformed_package_json/package.json
+
+[include]
+
+[libs]
+
+[lints]
+
+[options]
+enums=true
+
+[strict]
+```
+**Update Babel config**
+Update the `babel.config.json` with the following contents:
+```json
+{
+  "presets": ["@babel/preset-env", "@babel/preset-react", "@babel/preset-flow"],
+  "plugins": ["transform-flow-enums"],
+  "targets": {
+    "esmodules": true
+  }
+}
+```
+**Update React js files**
+1. Add the `// @flow` comment at the top of the js files.
+2. Add return type annotation (use `React.MixedElement` here) for React component:
+```javascript
+function App(): React.MixedElement {
+  ...
+}
 ```

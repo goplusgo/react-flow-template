@@ -1,8 +1,10 @@
+// @flow
+
 import "./App.css";
 
 import * as React from "react";
 
-function App() {
+function App(): React.MixedElement {
   return (
     <div className="App">
       <header className="App-header">
