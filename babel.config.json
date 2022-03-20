@@ -1,8 +1,7 @@
 {
-    "presets": ["@babel/preset-env", "@babel/preset-react", "@babel/preset-flow"],
-    "plugins": ["transform-flow-enums"],
-    "targets": {
-      "esmodules": true
-    }
+  "presets": ["@babel/preset-env", "@babel/preset-react", "@babel/preset-flow"],
+  "plugins": ["transform-flow-enums"],
+  "targets": {
+    "esmodules": true
   }
-  
+}

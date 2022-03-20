@@ -1,52 +1,52 @@
-const path = require("path");
+const path = require('path');
 const webpack = require('webpack');
-const ESLintPlugin = require("eslint-webpack-plugin");
-const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ESLintPlugin = require('eslint-webpack-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: path.resolve(__dirname, "src", "index.js"),
-  mode: "development",
+  entry: path.resolve(__dirname, 'src', 'index.js'),
+  mode: 'development',
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ["babel-loader"],
+        use: ['babel-loader'],
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(json|png|jpg|gif|txt|ico)$/,
-        use: ["file-loader"],
+        use: ['file-loader'],
       },
     ],
   },
   resolve: {
-    extensions: ["*", ".js", ".jsx", ".css"],
+    extensions: ['*', '.js', '.jsx', '.css'],
   },
   output: {
-    path: path.resolve(__dirname, "./dist"),
-    filename: "bundle.js",
+    path: path.resolve(__dirname, './dist'),
+    filename: 'bundle.js',
     clean: true,
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new ESLintPlugin({
-      extensions: ["js", "jsx"],
-      exclude: ["/node_modules/"],
+      extensions: ['js', 'jsx'],
+      exclude: ['./node_modules/'],
     }),
-    new WebpackManifestPlugin({ publicPath: "/public/" }),
+    new WebpackManifestPlugin({ publicPath: '/public/' }),
     new HtmlWebpackPlugin({
-      template: "./public/index.html",
-      filename: "./index.html",
-      favicon: "./public/favicon.ico",
+      template: './public/index.html',
+      filename: './index.html',
+      favicon: './public/favicon.ico',
     }),
   ],
   devServer: {
-    static: path.resolve(__dirname, "./dist"),
+    static: path.resolve(__dirname, './dist'),
     hot: true,
   },
 };
